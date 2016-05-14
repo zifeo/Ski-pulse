@@ -1,4 +1,4 @@
-name := "Skitime"
+name := "Ski-pulse"
 
 version := "1.0"
 
@@ -42,3 +42,5 @@ cancelable in Global := true
 fork := true
 autoAPIMappings := true
 parallelExecution in Test := false
+
+unmanagedClasspath in Compile += baseDirectory.value / "src" / "main" / "resources"
