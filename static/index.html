@@ -8,25 +8,132 @@
     <script src="semantic.js"></script>
     <script src="d3.min.js"></script>
     <script src="animate.js"></script>
+    <script>
+        $(function() {
+
+            $('#calendar').calendar({
+                type: 'date',
+                inline: true,
+                firstDayOfWeek: 1,
+                initialDate: new Date("2015-11-30T06:00:00.000+01:00"),
+                minDate: new Date("2015-11-30T06:00:00.000+01:00"),
+                maxDate: new Date("2016-04-23T20:50:00.000+02:00"),
+                onChange: function(date) {
+                    console.log(date);
+                }
+            });
+
+            $.ajaxSetup({
+                async: false
+            });
+
+            var ds;
+
+            $.getJSON('ds.json', function(data) {
+                ds = data;
+            });
+
+            console.log(ds.ticketing);
+
+
+        });
+    </script>
     <link rel="stylesheet" type="text/css" class="ui" href="semantic.css">
     <style>
-        g {
-            
-        }
 
         .overlay {
             background-image: url("domaine_verbier.jpg");
             fill: none;
             pointer-events: all;
         }
+
+        #bottom-panel {
+            max-height: 197px;
+            padding-left: 3px;
+        }
     </style>
 </head>
 <body>
-    <svg>
-    </svg>
-    <button id="button1">data</button>
-    <button id="button2">data*2</button>
-    <button id="button3">play</button>
-    <button id="button4">pause</button>
+    <div class="ui grid">
+    	<div class="sixteen wide column">
+    		<svg>
+            </svg>
+    	</div>
+        <div class="row" id="bottom-panel">
+        	<div class="four wide column">
+        		<div id="calendar" class="ui calendar"></div>
+        	</div>
+        	<div class="four wide column">
+        		<div class="ui two column very relaxed grid">
+        			<div class="column">
+        				<div class="ui mini statistic">
+        					<div class="value">
+        						5,550
+        					</div>
+        					<div class="label">
+        						Downloads
+        					</div>
+        				</div>
+        				<br>
+        				<div class="ui mini statistic">
+        					<div class="value">
+        						5,550
+        					</div>
+        					<div class="label">
+        						Downloads
+        					</div>
+        				</div>
+        				<br>
+        				<div class="ui mini statistic">
+        					<div class="value">
+        						5,550
+        					</div>
+        					<div class="label">
+        						Downloads
+        					</div>
+        				</div>
+        			</div>
+        			<div class="ui vertical divider">VS</div>
+        			<div class="column">
+        				<div class="ui mini statistic">
+        					<div class="value">
+        						5,550
+        					</div>
+        					<div class="label">
+        						Downloads
+        					</div>
+        				</div>
+        				<br>
+        				<div class="ui mini statistic">
+        					<div class="value">
+        						5,550
+        					</div>
+        					<div class="label">
+        						Downloads
+        					</div>
+        				</div>
+        				<br>
+        				<div class="ui mini statistic">
+        					<div class="value">
+        						5,550
+        					</div>
+        					<div class="label">
+        						Downloads
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="four wide column">
+        		<button id="button1">data</button>
+                <button id="button2">data*2</button>
+                <button id="button3">play</button>
+                <button id="button4">pause</button>
+        	</div>
+        	<div class="four wide column">
+        		meteo
+        	</div>
+        </div>
+    </div>
 </body>
 </html>
