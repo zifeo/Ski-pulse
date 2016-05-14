@@ -142,4 +142,7 @@ object Datasets extends App {
     ).prettyPrint
   )
 
+  println(ticketing.map(_.date).min)
+  println(ticketing.map(_.date).max)
+
 }

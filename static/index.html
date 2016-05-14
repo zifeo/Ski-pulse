@@ -1,26 +1,119 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>Ski-pulse</title>
-    <script src="jquery.js"></script>
-    <script src="semantic.js"></script>
-    <script src="tablesort.js"></script>
-    <link rel="stylesheet" type="text/css" class="ui" href="semantic.css">
-    <script>
-        $(function() {
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<title>Ski-pulse</title>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+	<script>
+		$(function() {
+
+			$('#calendar').calendar({
+				type: 'date',
+				inline: true,
+				firstDayOfWeek: 1,
+				initialDate: new Date("2015-11-30T06:00:00.000+01:00"),
+				minDate: new Date("2015-11-30T06:00:00.000+01:00"),
+				maxDate: new Date("2016-04-23T20:50:00.000+02:00"),
+				onChange: function(date) {
+					console.log(date);
+				}
+			});
+
+			console.log(new Date("30.11.15"));
 
 
-        });
-    </script>
-    <style>
-        body {
-
-        }
-    </style>
+		});
+	</script>
+	<style>
+		body {
+			padding: 1em;
+		}
+	</style>
 </head>
 <body>
+
+
+</div>
+
+<div class="ui grid">
+	<div class="sixteen wide column">
+		map
+	</div>
+	<div class="four wide column">
+		<div id="calendar" class="ui calendar"></div>
+	</div>
+	<div class="four wide column">
+		<div class="ui two column very relaxed grid">
+			<div class="column">
+				<div class="ui mini statistic">
+					<div class="value">
+						5,550
+					</div>
+					<div class="label">
+						Downloads
+					</div>
+				</div>
+				<br>
+				<div class="ui mini statistic">
+					<div class="value">
+						5,550
+					</div>
+					<div class="label">
+						Downloads
+					</div>
+				</div>
+				<br>
+				<div class="ui mini statistic">
+					<div class="value">
+						5,550
+					</div>
+					<div class="label">
+						Downloads
+					</div>
+				</div>
+			</div>
+			<div class="ui vertical divider">VS</div>
+			<div class="column">
+				<div class="ui mini statistic">
+					<div class="value">
+						5,550
+					</div>
+					<div class="label">
+						Downloads
+					</div>
+				</div>
+				<br>
+				<div class="ui mini statistic">
+					<div class="value">
+						5,550
+					</div>
+					<div class="label">
+						Downloads
+					</div>
+				</div>
+				<br>
+				<div class="ui mini statistic">
+					<div class="value">
+						5,550
+					</div>
+					<div class="label">
+						Downloads
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="four wide column">
+		hist
+	</div>
+	<div class="four wide column">
+		meteo
+	</div>
+</div>
 
 </body>
 </html>
