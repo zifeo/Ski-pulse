@@ -6,21 +6,27 @@
     <title>Ski-pulse</title>
     <script src="jquery.js"></script>
     <script src="semantic.js"></script>
-    <script src="tablesort.js"></script>
+    <script src="d3.min.js"></script>
+    <script src="animate.js"></script>
     <link rel="stylesheet" type="text/css" class="ui" href="semantic.css">
-    <script>
-        $(function() {
-
-
-        });
-    </script>
     <style>
-        body {
-
+        svg {
+            background-image: url("domaine_verbier.jpg");
+            background-size: contain;
         }
     </style>
 </head>
 <body>
+    <svg width="2976" height="1500">
+        <circle cx="30" cy="60" r="5.656854249492381" fill="steelblue"></circle>
+        <circle cx="130" cy="60" r="7.54983443527075" fill="steelblue"></circle>
+        <circle cx="230" cy="60" r="10.583005244258363" fill="steelblue"></circle>
+        <circle cx="330" cy="60" r="17.11724276862369" fill="steelblue"></circle>
+    </svg>
 
+    <button id="button1">data</button>
+    <button id="button2">data*2</button>
+    <button id="button3">play</button>
+    <button id="button4">pause</button>
 </body>
 </html>
