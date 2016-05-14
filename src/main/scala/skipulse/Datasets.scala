@@ -11,6 +11,7 @@ import scala.io.{Codec, Source}
 
 case class ModelData(station: String, date: DateTime, skier: Int)
 case class TicketingData(station: String, date: DateTime, count: Int)
+case class Station(name: String, startX: Int, startY: Int, endX: Int, endY: Int, capacity: Int, flow: Int)
 
 object Datasets extends App {
 
@@ -21,6 +22,14 @@ object Datasets extends App {
 
   def source(name: String): List[String] =
     Source.fromFile(s"./$folder/$name")(Codec.ISO8859).getLines().toList
+
+  val stations = for {
+    line <- source("positions_remontees.rmt")
+  } yield
+    line.split(' ') match {
+      case Array(_, name, sx, sy, ex, ey, cap, flo) =>
+        Station(name, sx.toInt, sy.toInt, ex.toInt, ey.toInt, cap.toInt, flo.toInt)
+    }
 
   val model = for {
     line <- source("model.csv").drop(1)
@@ -130,6 +139,7 @@ object Datasets extends App {
       "day" -> date.toString,
       "data" -> output.toJson
 
-    ).prettyPrint)
+    ).prettyPrint
+  )
 
 }
