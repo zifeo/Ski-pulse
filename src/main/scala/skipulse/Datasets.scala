@@ -1,6 +1,6 @@
 package skipulse
 
-import java.io.File
+import java.io.{PrintWriter, File}
 
 import com.github.nscala_time.time.OrderingImplicits._
 import org.joda.time._
@@ -110,39 +110,38 @@ object Datasets extends App {
       head :: tail
   }
 
+  val min = ticketing.map(_.date).min
+
   val output =
     ticketing
-      .groupBy(_.station)
-      .map { case (station, eps) =>
+      .groupBy(x => (x.date.getDayOfYear + min.getDayOfYear) % 365)
+      .map { case (day, ds) =>
 
-        val entries =
-          eps
-            .filter(_.date.getDayOfYear == date.getDayOfYear)
-        assert(entries.size == 90)
+        ds
+          .groupBy(_.station)
+          .map { case (station, entries) =>
 
-        val counts =
-          diff(inter(entries))
-            .map(_.count)
+            val counts = diff(inter(entries)).map(_.count)
+            assert(counts.min >= 0)
 
-        assert(counts.min >= 0)
-
-        JsObject(
-          "station" -> station,
-          "start" -> entries.minBy(_.date).date.toString,
-          "end" -> entries.maxBy(_.date).date.toString,
-          "entries" -> counts.toJson
-        )
+            JsObject(
+              "station" -> station,
+              "start" -> entries.minBy(_.date).date.toString,
+              "end" -> entries.maxBy(_.date).date.toString,
+              "entries" -> counts.toJson
+            )
+          }
       }
 
-  println(
+  val str =
     JsObject(
-      "day" -> date.toString,
-      "data" -> output.toJson
+      //"stations" -> output.toJson,
+      "ticketing" -> output.toJson
+    )
 
-    ).prettyPrint
-  )
 
-  println(ticketing.map(_.date).min)
-  println(ticketing.map(_.date).max)
+  val js = new PrintWriter(new File("static/ds.json"))
+js.write(str.compactPrint)
+  js.close
 
 }

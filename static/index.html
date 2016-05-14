@@ -23,7 +23,17 @@
 				}
 			});
 
-			console.log(new Date("30.11.15"));
+			$.ajaxSetup({
+				async: false
+			});
+
+			var ds;
+
+			$.getJSON('ds.json', function(data) {
+				ds = data;
+			});
+
+			console.log(ds.ticketing)
 
 
 		});
