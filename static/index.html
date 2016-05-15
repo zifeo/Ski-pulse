@@ -35,7 +35,43 @@
 
             console.log(ds.ticketing);
 
+            $.getJSON( "./weather/weather.json", function( data ) {
+                    var items = [];
+                    $.each( data, function( key, val ) {
+                            items.push( "<li id='" + key + "'>" + key + "</li>" );
+                    });
+            });
 
+            function changeWeatherImage() {
+                var clear = {name:"clear-day", src:"./weather/icons/sunny.png"};
+                var clearnight = {name:"clear-night", src:"./weather/icons/full moon.png"};
+                var rain = {name:"rain", src:"./weather/icons/heavy rain.png"};
+                var snow = {name:"snow", src:"./weather/icons/snowy.png"};
+                var sleet = {name:"sleet", src:"./weather/icons/snowy.png"};
+                var wind = {name:"wind", src:"./weather/icons/windy.png"};
+                var fog = {name:"fog", src:"./weather/icons/fog.png"};
+                var cloudy = {name:"cloudy", src:"./weather/icons/cloudy.png"};
+                var partlyCloudyDay = {name:"partly-cloudy-day", src:"./weather/icons/sunny to cloudy.png"};
+                var partlyCloudyNight = {name:"partly-cloudy-night", src:"./weather/icons/overcast.png"};
+                var unknowSrc = "./weather/icons/unknown.png";
+
+                var map = [
+                    clear, clearnight, rain, snow, sleet, wind, fog, cloudy, partlyCloudyDay, partlyCloudyNight
+                ];
+                var current = "hail";
+                var found = false;
+                $.each(map, function (idx, elem) {
+                    if (elem.name == current) {
+                        $('#weatherimage').attr("src", elem.src);
+                        found = true;
+                    }
+                });
+                if (!found) {
+                    $('#weatherimage').attr("src", unknowSrc);
+                }
+            }
+
+            changeWeatherImage();
         });
     </script>
     <link rel="stylesheet" type="text/css" class="ui" href="semantic.css">
@@ -131,7 +167,16 @@
                 <button id="button4">pause</button>
         	</div>
         	<div class="four wide column">
-        		meteo
+                        <div class="ui card">
+                            <img id="weatherimage" src="./weather/icons/mostlycloudy.png">
+                                <div class="content">
+                                        <a class="header" href="#">Steve Jobes</a>
+                                        <div class="meta">
+                                                <a>Last Seen 2 days ago</a>
+                                        </div>
+                                </div>
+                        </div>        
+                        <div id="weatherPanel"></div>
         	</div>
         </div>
     </div>
