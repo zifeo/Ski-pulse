@@ -5,26 +5,17 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>Ski-pulse</title>
     <link rel="stylesheet" type="text/css" href="css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="css/ion.rangeSlider.css">
+    <link rel="stylesheet" type="text/css" href="css/ion.rangeSlider.skinNice.css">
     <script src="js/jquery.js"></script>
     <script src="js/semantic.js"></script>
     <script src="js/d3.min.js"></script>
+    <script src="js/ion.rangeSlider.min.js"></script>
     <script src="animate.js"></script>
     <script>
         $(function() {
-
-            $('#calendar').calendar({
-                type: 'date',
-                inline: true,
-                firstDayOfWeek: 1,
-                initialDate: new Date("2015-11-30T06:00:00.000+01:00"),
-                minDate: new Date("2015-11-30T06:00:00.000+01:00"),
-                maxDate: new Date("2016-04-23T20:50:00.000+02:00"),
-                onChange: function(date) {
-                    console.log(date);
-                }
-            });
-
-            function load(url) {
+	        
+	      	function load(url) {
                 var ret;
                 $.ajaxSetup({
                     async: false
@@ -38,8 +29,32 @@
                 return ret;
             }
 
-            var ds = load('ds.json');
+            var ds = load('js/ds.json');
             console.log(ds.ticketing);
+
+            $('#calendar').calendar({
+                type: 'date',
+                inline: true,
+                firstDayOfWeek: 1,
+                initialDate: new Date("2015-11-30T06:00:00.000+01:00"),
+                minDate: new Date("2015-11-30T06:00:00.000+01:00"),
+                maxDate: new Date("2016-04-23T20:50:00.000+02:00"),
+                onChange: function(date) {
+                    console.log(date);
+                }
+            });
+
+            $("#timeline").ionRangeSlider({
+                grid: true,
+                min: -1000,
+                max: 1000,
+                from: -500,
+                to: 500,
+                step: 10,
+                hide_min_max: true,
+                hide_from_to: true,
+                values: [0, 10, 100, 1000, 10000, 100000, 1000000]
+            });
 
 
         });
@@ -47,12 +62,32 @@
     <style>
 
         .overlay {
-            background-image: url("img/domaine_verbier.jpg");
+            background-image: url("domaine_verbier.jpg");
             fill: none;
             pointer-events: all;
         }
 
-        #panel {
+        .row {
+            padding: 0 !important;
+        }
+
+        #bar {
+            margin: 0em 38px 22px 32px;
+            width: 100%;
+        }
+
+        #timeline-container {
+            margin-left: 250px;
+            margin-top: -5px;
+        }
+
+        #buttons {
+            float: left;
+            margin-top: 22px !important;
+        }
+        
+        #calendar-container {
+	        padding: 0 0 18px 18px;
         }
 
     </style>
@@ -65,93 +100,42 @@
         </div>
     </div>
     <div class="row" id="controls">
-        <div class="sixteen wide column">
-            <div class="ui icon buttons">
-                <button class="ui icon button">
-                    <i class="backward icon"></i>
-                </button>
-                <button class="ui icon button">
-                    <i class="step backward icon"></i>
-                </button>
-                <button class="ui icon button">
-                    <i class="play icon"></i>
-                </button>
-                <button class="ui icon button">
-                    <i class="pause icon"></i>
-                </button>
-                <button class="ui icon button">
-                    <i class="step forward icon"></i>
-                </button>
-                <button class="ui icon button">
-                    <i class="forward icon"></i>
-                </button>
+        <div id="bar">
+            <div class="sixteen wide column">
+                <div class="ui icon buttons" id="buttons">
+                    <button class="ui icon button">
+                        <i class="backward icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="step backward icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="play icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="pause icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="step forward icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="forward icon"></i>
+                    </button>
+                </div>
+                <div id="timeline-container">
+                    <input type="text" id="timeline" value="" />
+                </div>
             </div>
         </div>
     </div>
     <div class="row" id="panel">
         <div class="four wide column">
-            <div id="calendar" class="ui calendar"></div>
+	        <div id="calendar-container">
+            	<div id="calendar" class="ui calendar"></div>
+        	</div>
         </div>
         <div class="four wide column">
-            <div class="ui two column very relaxed grid">
-                <div class="column">
-                    <div class="ui mini statistic">
-                        <div class="value">
-                            5,550
-                        </div>
-                        <div class="label">
-                            Downloads
-                        </div>
-                    </div>
-                    <br>
-                    <div class="ui mini statistic">
-                        <div class="value">
-                            5,550
-                        </div>
-                        <div class="label">
-                            Downloads
-                        </div>
-                    </div>
-                    <br>
-                    <div class="ui mini statistic">
-                        <div class="value">
-                            5,550
-                        </div>
-                        <div class="label">
-                            Downloads
-                        </div>
-                    </div>
-                </div>
-                <div class="ui vertical divider">VS</div>
-                <div class="column">
-                    <div class="ui mini statistic">
-                        <div class="value">
-                            5,550
-                        </div>
-                        <div class="label">
-                            Downloads
-                        </div>
-                    </div>
-                    <br>
-                    <div class="ui mini statistic">
-                        <div class="value">
-                            5,550
-                        </div>
-                        <div class="label">
-                            Downloads
-                        </div>
-                    </div>
-                    <br>
-                    <div class="ui mini statistic">
-                        <div class="value">
-                            5,550
-                        </div>
-                        <div class="label">
-                            Downloads
-                        </div>
-                    </div>
-                </div>
-            </div>
+            stats
         </div>
         <div class="four wide column">
             <button id="button1">data</button>
