@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>Ski-pulse</title>
-    <script src="jquery.js"></script>
-    <script src="semantic.js"></script>
-    <script src="d3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/semantic.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/semantic.js"></script>
+    <script src="js/d3.min.js"></script>
     <script src="animate.js"></script>
     <script>
         $(function() {
@@ -23,117 +24,145 @@
                 }
             });
 
-            $.ajaxSetup({
-                async: false
-            });
+            function load(url) {
+                var ret;
+                $.ajaxSetup({
+                    async: false
+                });
+                $.getJSON(url, function (data) {
+                    ret = data;
+                });
+                $.ajaxSetup({
+                    async: true
+                });
+                return ret;
+            }
 
-            var ds;
-
-            $.getJSON('ds.json', function(data) {
-                ds = data;
-            });
-
+            var ds = load('ds.json');
             console.log(ds.ticketing);
 
 
         });
     </script>
-    <link rel="stylesheet" type="text/css" class="ui" href="semantic.css">
     <style>
 
         .overlay {
-            background-image: url("domaine_verbier.jpg");
+            background-image: url("img/domaine_verbier.jpg");
             fill: none;
             pointer-events: all;
         }
 
-        #bottom-panel {
-            max-height: 197px;
-            padding-left: 3px;
+        #panel {
         }
+
     </style>
 </head>
 <body>
-    <div class="ui grid">
-    	<div class="sixteen wide column">
-    		<svg>
-            </svg>
-    	</div>
-        <div class="row" id="bottom-panel">
-        	<div class="four wide column">
-        		<div id="calendar" class="ui calendar"></div>
-        	</div>
-        	<div class="four wide column">
-        		<div class="ui two column very relaxed grid">
-        			<div class="column">
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        				<br>
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        				<br>
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        			</div>
-        			<div class="ui vertical divider">VS</div>
-        			<div class="column">
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        				<br>
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        				<br>
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="four wide column">
-        		<button id="button1">data</button>
-                <button id="button2">data*2</button>
-                <button id="button3">play</button>
-                <button id="button4">pause</button>
-        	</div>
-        	<div class="four wide column">
-        		meteo
-        	</div>
+<div class="ui grid">
+    <div class="row" id="display">
+        <div class="sixteen wide column">
+            <svg></svg>
         </div>
     </div>
+    <div class="row" id="controls">
+        <div class="sixteen wide column">
+            <div class="ui icon buttons">
+                <button class="ui icon button">
+                    <i class="backward icon"></i>
+                </button>
+                <button class="ui icon button">
+                    <i class="step backward icon"></i>
+                </button>
+                <button class="ui icon button">
+                    <i class="play icon"></i>
+                </button>
+                <button class="ui icon button">
+                    <i class="pause icon"></i>
+                </button>
+                <button class="ui icon button">
+                    <i class="step forward icon"></i>
+                </button>
+                <button class="ui icon button">
+                    <i class="forward icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="panel">
+        <div class="four wide column">
+            <div id="calendar" class="ui calendar"></div>
+        </div>
+        <div class="four wide column">
+            <div class="ui two column very relaxed grid">
+                <div class="column">
+                    <div class="ui mini statistic">
+                        <div class="value">
+                            5,550
+                        </div>
+                        <div class="label">
+                            Downloads
+                        </div>
+                    </div>
+                    <br>
+                    <div class="ui mini statistic">
+                        <div class="value">
+                            5,550
+                        </div>
+                        <div class="label">
+                            Downloads
+                        </div>
+                    </div>
+                    <br>
+                    <div class="ui mini statistic">
+                        <div class="value">
+                            5,550
+                        </div>
+                        <div class="label">
+                            Downloads
+                        </div>
+                    </div>
+                </div>
+                <div class="ui vertical divider">VS</div>
+                <div class="column">
+                    <div class="ui mini statistic">
+                        <div class="value">
+                            5,550
+                        </div>
+                        <div class="label">
+                            Downloads
+                        </div>
+                    </div>
+                    <br>
+                    <div class="ui mini statistic">
+                        <div class="value">
+                            5,550
+                        </div>
+                        <div class="label">
+                            Downloads
+                        </div>
+                    </div>
+                    <br>
+                    <div class="ui mini statistic">
+                        <div class="value">
+                            5,550
+                        </div>
+                        <div class="label">
+                            Downloads
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four wide column">
+            <button id="button1">data</button>
+            <button id="button2">data*2</button>
+            <button id="button3">play</button>
+            <button id="button4">pause</button>
+        </div>
+        <div class="four wide column">
+            meteo
+        </div>
+    </div>
+</div>
 </body>
 </html>
