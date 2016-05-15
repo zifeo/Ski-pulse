@@ -144,7 +144,7 @@ object Datasets extends App {
     )
 
 
-  val js = new PrintWriter(new File("static/ds.json"))
+  val js = new PrintWriter(new File("static/js/ds.json"))
   js.write(str.compactPrint)
   js.close()
 
