@@ -4,12 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>Ski-pulse</title>
-    <script src="jquery.js"></script>
-    <script src="semantic.js"></script>
-    <script src="d3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="css/ion.rangeSlider.css">
+    <link rel="stylesheet" type="text/css" href="css/ion.rangeSlider.skinNice.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/semantic.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/ion.rangeSlider.min.js"></script>
     <script src="animate.js"></script>
     <script>
         $(function() {
+	        
+	      	function load(url) {
+                var ret;
+                $.ajaxSetup({
+                    async: false
+                });
+                $.getJSON(url, function (data) {
+                    ret = data;
+                });
+                $.ajaxSetup({
+                    async: true
+                });
+                return ret;
+            }
+
+            var ds = load('js/ds.json');
+            console.log(ds.ticketing);
 
             $('#calendar').calendar({
                 type: 'date',
@@ -23,14 +44,16 @@
                 }
             });
 
-            $.ajaxSetup({
-                async: false
-            });
-
-            var ds;
-
-            $.getJSON('ds.json', function(data) {
-                ds = data;
+            $("#timeline").ionRangeSlider({
+                grid: true,
+                min: -1000,
+                max: 1000,
+                from: -500,
+                to: 500,
+                step: 10,
+                hide_min_max: true,
+                hide_from_to: true,
+                values: [0, 10, 100, 1000, 10000, 100000, 1000000]
             });
 
             console.log(ds.ticketing);
@@ -74,7 +97,6 @@
             changeWeatherImage();
         });
     </script>
-    <link rel="stylesheet" type="text/css" class="ui" href="semantic.css">
     <style>
 
         .overlay {
@@ -83,102 +105,99 @@
             pointer-events: all;
         }
 
-        #bottom-panel {
-            max-height: 197px;
-            padding-left: 3px;
+        .row {
+            padding: 0 !important;
         }
+
+        #bar {
+            margin: 0em 38px 22px 32px;
+            width: 100%;
+        }
+
+        #timeline-container {
+            margin-left: 250px;
+            margin-top: -5px;
+        }
+
+        #buttons {
+            float: left;
+            margin-top: 22px !important;
+        }
+        
+        #calendar-container {
+	        padding: 0 0 18px 18px;
+        }
+        
+        #panel {
+        }
+     
     </style>
 </head>
 <body>
-    <div class="ui grid">
-    	<div class="sixteen wide column">
-    		<svg>
-            </svg>
-    	</div>
-        <div class="row" id="bottom-panel">
-        	<div class="four wide column">
-        		<div id="calendar" class="ui calendar"></div>
-        	</div>
-        	<div class="four wide column">
-        		<div class="ui two column very relaxed grid">
-        			<div class="column">
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        				<br>
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        				<br>
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        			</div>
-        			<div class="ui vertical divider">VS</div>
-        			<div class="column">
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        				<br>
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        				<br>
-        				<div class="ui mini statistic">
-        					<div class="value">
-        						5,550
-        					</div>
-        					<div class="label">
-        						Downloads
-        					</div>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        	<div class="four wide column">
-        		<button id="button1">data</button>
-                <button id="button2">data*2</button>
-                <button id="button3">play</button>
-                <button id="button4">pause</button>
-        	</div>
-        	<div class="four wide column">
-                        <div class="ui card">
-                            <img id="weatherimage" src="./weather/icons/mostlycloudy.png">
-                                <div class="content">
-                                        <a class="header" href="#">Steve Jobes</a>
-                                        <div class="meta">
-                                                <a>Last Seen 2 days ago</a>
-                                        </div>
-                                </div>
-                        </div>        
-                        <div id="weatherPanel"></div>
-        	</div>
+<div class="ui grid">
+    <div class="row" id="display">
+        <div class="sixteen wide column">
+            <svg></svg>
         </div>
     </div>
+    <div class="row" id="controls">
+        <div id="bar">
+            <div class="sixteen wide column">
+                <div class="ui icon buttons" id="buttons">
+                    <button class="ui icon button">
+                        <i class="backward icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="step backward icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="play icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="pause icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="step forward icon"></i>
+                    </button>
+                    <button class="ui icon button">
+                        <i class="forward icon"></i>
+                    </button>
+                </div>
+                <div id="timeline-container">
+                    <input type="text" id="timeline" value="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="panel">
+        <div class="four wide column">
+	        <div id="calendar-container">
+            	<div id="calendar" class="ui calendar"></div>
+        	</div>
+        </div>
+        <div class="four wide column">
+            stats
+        </div>
+        <div class="four wide column">
+            <button id="button1">data</button>
+            <button id="button2">data*2</button>
+            <button id="button3">play</button>
+            <button id="button4">pause</button>
+        </div>
+
+        <div class="four wide column">
+            <div class="ui card">
+                <img id="weatherimage" src="./weather/icons/mostlycloudy.png">
+                <div class="content">
+                    <a class="header" href="#">Steve Jobes</a>
+                    <div class="meta">
+                        <a>Last Seen 2 days ago</a>
+                    </div>
+                </div>
+            </div>
+            <div id="weatherPanel"></div>
+
+    </div>
+</div>
 </body>
 </html>
