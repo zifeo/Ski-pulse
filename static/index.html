@@ -12,94 +12,7 @@
     <script src="js/d3.min.js"></script>
     <script src="js/ion.rangeSlider.min.js"></script>
     <script src="animate.js"></script>
-    <script>
-        $(function() {
-	        
-	      	function load(url) {
-                var ret;
-                $.ajaxSetup({
-                    async: false
-                });
-                $.getJSON(url, function (data) {
-                    ret = data;
-                });
-                $.ajaxSetup({
-                    async: true
-                });
-                return ret;
-            }
 
-            var ds = load('js/ds.json');
-
-            $('#calendar').calendar({
-                type: 'date',
-                inline: true,
-                firstDayOfWeek: 1,
-                initialDate: new Date("2015-11-30T06:00:00.000+01:00"),
-                minDate: new Date("2015-11-30T06:00:00.000+01:00"),
-                maxDate: new Date("2016-04-23T20:50:00.000+02:00"),
-                onChange: function(date) {
-                    currentDate = date;
-                }
-            });
-
-            $("#timeline").ionRangeSlider({
-                grid: true,
-                from: -500,
-                to: 500,
-                step: 10,
-                hide_min_max: true,
-                hide_from_to: true,
-                values: values_for_date()
-            });
-
-            function values_for_date(){
-                var values = [];
-                ds.ticketing.start
-                return values;
-            }
-
-            console.log(ds.ticketing);
-
-            $.getJSON( "./weather/weather.json", function( data ) {
-                    var items = [];
-                    $.each( data, function( key, val ) {
-                            items.push( "<li id='" + key + "'>" + key + "</li>" );
-                    });
-            });
-
-            function changeWeatherImage() {
-                var clear = {name:"clear-day", src:"./weather/icons/sunny.png"};
-                var clearnight = {name:"clear-night", src:"./weather/icons/full moon.png"};
-                var rain = {name:"rain", src:"./weather/icons/heavy rain.png"};
-                var snow = {name:"snow", src:"./weather/icons/snowy.png"};
-                var sleet = {name:"sleet", src:"./weather/icons/snowy.png"};
-                var wind = {name:"wind", src:"./weather/icons/windy.png"};
-                var fog = {name:"fog", src:"./weather/icons/fog.png"};
-                var cloudy = {name:"cloudy", src:"./weather/icons/cloudy.png"};
-                var partlyCloudyDay = {name:"partly-cloudy-day", src:"./weather/icons/sunny to cloudy.png"};
-                var partlyCloudyNight = {name:"partly-cloudy-night", src:"./weather/icons/overcast.png"};
-                var unknowSrc = "./weather/icons/unknown.png";
-
-                var map = [
-                    clear, clearnight, rain, snow, sleet, wind, fog, cloudy, partlyCloudyDay, partlyCloudyNight
-                ];
-                var current = "hail";
-                var found = false;
-                $.each(map, function (idx, elem) {
-                    if (elem.name == current) {
-                        $('#weatherimage').attr("src", elem.src);
-                        found = true;
-                    }
-                });
-                if (!found) {
-                    $('#weatherimage').attr("src", unknowSrc);
-                }
-            }
-
-            changeWeatherImage();
-        });
-    </script>
     <style>
 
         .overlay {
@@ -179,7 +92,40 @@
         	</div>
         </div>
         <div class="four wide column">
-            stats
+            <div class="ui small horizontal statistics">
+			  <div class="statistic">
+			    <div class="value">
+			      2
+			    </div>
+			    <div class="label">
+			      Vertical
+			    </div>
+			  </div>
+			  <div class="statistic">
+			    <div class="value">
+			      3299
+			    </div>
+			    <div class="label">
+			      Horizontal
+			    </div>
+			  </div>
+			  <div class="statistic">
+			    <div class="value">
+			      22
+			    </div>
+			    <div class="label">
+			      Capacity
+			    </div>
+			  </div>
+			  <div class="statistic">
+			    <div class="value">
+			      22
+			    </div>
+			    <div class="label">
+			      Flow
+			    </div>
+			  </div>
+			</div>
         </div>
         <div class="four wide column">
             <button id="button1">data</button>
