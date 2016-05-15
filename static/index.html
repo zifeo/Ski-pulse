@@ -10,6 +10,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/semantic.js"></script>
     <script src="js/d3.min.js"></script>
+    <script src="js/plotly-latest.min.js"></script>
     <script src="js/ion.rangeSlider.min.js"></script>
     <script src="animate.js"></script>
     <style>
@@ -38,8 +39,9 @@
             padding: 0 0 18px 18px;
         }
 
-        #panel {
-        }
+        .statistics {
+	    	margin: 1.5em 2.5em !important;     
+	    }
 
     </style>
 </head>
@@ -54,27 +56,27 @@
         <div id="bar">
             <div class="sixteen wide column">
                 <div class="ui icon buttons" id="buttons">
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="dayBwdButton">
                         <i class="backward icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="stepBwdButton">
                         <i class="step backward icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="playButton">
                         <i class="play icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="pauseButton">
                         <i class="pause icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="stepFwdButton">
                         <i class="step forward icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="dayFwdButton">
                         <i class="forward icon"></i>
                     </button>
                 </div>
                 <div id="timeline-container">
-                    <input type="text" id="timeline" value="" />
+                    <input type="text" id="timeline" value=""/>
                 </div>
             </div>
         </div>
@@ -87,50 +89,46 @@
         </div>
         <div class="four wide column">
             <div class="ui small horizontal statistics">
-                <div class="statistic">
-                    <div class="value">
-                        2
-                    </div>
-                    <div class="label">
-                        Vertical
-                    </div>
-                </div>
-                <div class="statistic">
-                    <div class="value">
-                        3299
-                    </div>
-                    <div class="label">
-                        Horizontal
-                    </div>
-                </div>
-                <div class="statistic">
-                    <div class="value">
-                        22
-                    </div>
-                    <div class="label">
-                        Capacity
-                    </div>
-                </div>
-                <div class="statistic">
-                    <div class="value">
-                        22
-                    </div>
-                    <div class="label">
-                        Flow
-                    </div>
-                </div>
-            </div>
+			  <div class="statistic">
+			    <div class="value" id="vdist">
+			      2
+			    </div>
+			    <div class="label">
+			      Vertical
+			    </div>
+			  </div>
+			  <div class="statistic">
+			    <div class="value" id="hdist">
+			      3299
+			    </div>
+			    <div class="label">
+			      Horizontal
+			    </div>
+			  </div>
+			  <div class="statistic">
+			    <div class="value" id="capa">
+			      22
+			    </div>
+			    <div class="label">
+			      Capacity
+			    </div>
+			  </div>
+			  <div class="statistic">
+			    <div class="value" id="flow">
+			      22
+			    </div>
+			    <div class="label">
+			      Flow
+			    </div>
+			  </div>
+			</div>
+        </div>
+        <div class="four wide column" id="hist">
         </div>
         <div class="four wide column">
-            <button id="button1">data</button>
-            <button id="button2">data*2</button>
-            <button id="button3">play</button>
-            <button id="button4">pause</button>
-        </div>
-        <div class="four wide column">
-            <div class="ui card">
+            <div class="ui card" style="margin: 0 3em!important; width: 80% ;">
                 <div id="weathertemp" style="font-size: 30px; padding: 10px;float: right; display: inline-block"></div>
-                <img id="weatherimage" src="./weather/icons/mostlycloudy.png" width="150" height="150" style="margin: 0 auto">
+                <img id="weatherimage" src="./weather/icons/cloudy.png" width="150" height="150" style="margin: 0 auto">
                 <div class="content">
                     <div id="weathersummary"></div>
                     <div id="weathermeta"></div>
