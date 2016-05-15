@@ -10,6 +10,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/semantic.js"></script>
     <script src="js/d3.min.js"></script>
+    <script src="js/plotly-latest.min.js"></script>
     <script src="js/ion.rangeSlider.min.js"></script>
     <script src="animate.js"></script>
     <style>
@@ -43,8 +44,9 @@
 	        padding: 0 0 18px 18px;
         }
         
-        #panel {
-        }
+        .statistics {
+	    	margin: 1.5em 2.5em !important;     
+	    }
      
     </style>
 </head>
@@ -93,7 +95,7 @@
         <div class="four wide column">
             <div class="ui small horizontal statistics">
 			  <div class="statistic">
-			    <div class="value">
+			    <div class="value" id="vdist">
 			      2
 			    </div>
 			    <div class="label">
@@ -101,7 +103,7 @@
 			    </div>
 			  </div>
 			  <div class="statistic">
-			    <div class="value">
+			    <div class="value" id="hdist">
 			      3299
 			    </div>
 			    <div class="label">
@@ -109,7 +111,7 @@
 			    </div>
 			  </div>
 			  <div class="statistic">
-			    <div class="value">
+			    <div class="value" id="capa">
 			      22
 			    </div>
 			    <div class="label">
@@ -117,7 +119,7 @@
 			    </div>
 			  </div>
 			  <div class="statistic">
-			    <div class="value">
+			    <div class="value" id="flow">
 			      22
 			    </div>
 			    <div class="label">
@@ -126,11 +128,7 @@
 			  </div>
 			</div>
         </div>
-        <div class="four wide column">
-            <button id="button1">data</button>
-            <button id="button2">data*2</button>
-            <button id="button3">play</button>
-            <button id="button4">pause</button>
+        <div class="four wide column" id="hist">
         </div>
         <div class="four wide column">
             meteo
