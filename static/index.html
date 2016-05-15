@@ -12,56 +12,6 @@
     <script src="js/d3.min.js"></script>
     <script src="js/ion.rangeSlider.min.js"></script>
     <script src="animate.js"></script>
-    <script>
-        $(function() {
-	        
-	      	function load(url) {
-                var ret;
-                $.ajaxSetup({
-                    async: false
-                });
-                $.getJSON(url, function (data) {
-                    ret = data;
-                });
-                $.ajaxSetup({
-                    async: true
-                });
-                return ret;
-            }
-
-            var ds = load('js/ds.json');
-
-            $('#calendar').calendar({
-                type: 'date',
-                inline: true,
-                firstDayOfWeek: 1,
-                initialDate: new Date("2015-11-30T06:00:00.000+01:00"),
-                minDate: new Date("2015-11-30T06:00:00.000+01:00"),
-                maxDate: new Date("2016-04-23T20:50:00.000+02:00"),
-                onChange: function(date) {
-                    currentDate = date;
-                }
-            });
-
-            $("#timeline").ionRangeSlider({
-                grid: true,
-                from: -500,
-                to: 500,
-                step: 10,
-                hide_min_max: true,
-                hide_from_to: true,
-                values: values_for_date()
-            });
-
-            function values_for_date(){
-                var values = [];
-                ds.ticketing.start
-                return values;
-            }
-
-
-        });
-    </script>
     <style>
 
         .overlay {
