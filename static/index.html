@@ -12,41 +12,35 @@
     <script src="js/d3.min.js"></script>
     <script src="js/ion.rangeSlider.min.js"></script>
     <script src="animate.js"></script>
-
     <style>
-
         .overlay {
             background-image: url("domaine_verbier.jpg");
             fill: none;
             pointer-events: all;
         }
-
         .row {
             padding: 0 !important;
         }
-
         #bar {
             margin: 0em 38px 22px 32px;
             width: 100%;
         }
-
         #timeline-container {
             margin-left: 250px;
             margin-top: -5px;
         }
-
         #buttons {
             float: left;
             margin-top: 22px !important;
         }
-        
+
         #calendar-container {
-	        padding: 0 0 18px 18px;
+            padding: 0 0 18px 18px;
         }
-        
+
         #panel {
         }
-     
+
     </style>
 </head>
 <body>
@@ -87,45 +81,45 @@
     </div>
     <div class="row" id="panel">
         <div class="four wide column">
-	        <div id="calendar-container">
-            	<div id="calendar" class="ui calendar"></div>
-        	</div>
+            <div id="calendar-container">
+                <div id="calendar" class="ui calendar"></div>
+            </div>
         </div>
         <div class="four wide column">
             <div class="ui small horizontal statistics">
-			  <div class="statistic">
-			    <div class="value">
-			      2
-			    </div>
-			    <div class="label">
-			      Vertical
-			    </div>
-			  </div>
-			  <div class="statistic">
-			    <div class="value">
-			      3299
-			    </div>
-			    <div class="label">
-			      Horizontal
-			    </div>
-			  </div>
-			  <div class="statistic">
-			    <div class="value">
-			      22
-			    </div>
-			    <div class="label">
-			      Capacity
-			    </div>
-			  </div>
-			  <div class="statistic">
-			    <div class="value">
-			      22
-			    </div>
-			    <div class="label">
-			      Flow
-			    </div>
-			  </div>
-			</div>
+                <div class="statistic">
+                    <div class="value">
+                        2
+                    </div>
+                    <div class="label">
+                        Vertical
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="value">
+                        3299
+                    </div>
+                    <div class="label">
+                        Horizontal
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="value">
+                        22
+                    </div>
+                    <div class="label">
+                        Capacity
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="value">
+                        22
+                    </div>
+                    <div class="label">
+                        Flow
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="four wide column">
             <button id="button1">data</button>
@@ -133,19 +127,17 @@
             <button id="button3">play</button>
             <button id="button4">pause</button>
         </div>
-
         <div class="four wide column">
             <div class="ui card">
-                <img id="weatherimage" src="./weather/icons/mostlycloudy.png">
+                <div id="weathertemp" style="font-size: 30px; padding: 10px;float: right; display: inline-block"></div>
+                <img id="weatherimage" src="./weather/icons/mostlycloudy.png" width="150" height="150" style="margin: 0 auto">
                 <div class="content">
-                    <a class="header" href="#">Steve Jobes</a>
-                    <div class="meta">
-                        <a>Last Seen 2 days ago</a>
-                    </div>
+                    <div id="weathersummary"></div>
+                    <div id="weathermeta"></div>
                 </div>
             </div>
             <div id="weatherPanel"></div>
-
+        </div>
     </div>
 </div>
 </body>
