@@ -30,7 +30,6 @@
             }
 
             var ds = load('js/ds.json');
-            console.log(ds.ticketing);
 
             $('#calendar').calendar({
                 type: 'date',
@@ -40,21 +39,25 @@
                 minDate: new Date("2015-11-30T06:00:00.000+01:00"),
                 maxDate: new Date("2016-04-23T20:50:00.000+02:00"),
                 onChange: function(date) {
-                    console.log(date);
+                    currentDate = date;
                 }
             });
 
             $("#timeline").ionRangeSlider({
                 grid: true,
-                min: -1000,
-                max: 1000,
                 from: -500,
                 to: 500,
                 step: 10,
                 hide_min_max: true,
                 hide_from_to: true,
-                values: [0, 10, 100, 1000, 10000, 100000, 1000000]
+                values: values_for_date()
             });
+
+            function values_for_date(){
+                var values = [];
+                ds.ticketing.start
+                return values;
+            }
 
             console.log(ds.ticketing);
 
