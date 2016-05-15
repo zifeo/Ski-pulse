@@ -69,8 +69,6 @@
                     currentTimeForDate = value;
                 }
             });
-
-
         })
         ;
     </script>
@@ -121,22 +119,22 @@
         <div id="bar">
             <div class="sixteen wide column">
                 <div class="ui icon buttons" id="buttons">
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="dayBwdButton">
                         <i class="backward icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="stepBwdButton">
                         <i class="step backward icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="playButton">
                         <i class="play icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="pauseButton">
                         <i class="pause icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="stepFwdButton">
                         <i class="step forward icon"></i>
                     </button>
-                    <button class="ui icon button">
+                    <button class="ui icon button" id="dayFwdButton">
                         <i class="forward icon"></i>
                     </button>
                 </div>
@@ -154,12 +152,6 @@
         </div>
         <div class="four wide column">
             stats
-        </div>
-        <div class="four wide column">
-            <button id="button1">data</button>
-            <button id="button2">data*2</button>
-            <button id="button3">play</button>
-            <button id="button4">pause</button>
         </div>
         <div class="four wide column">
             meteo
