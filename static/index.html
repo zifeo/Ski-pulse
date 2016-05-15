@@ -13,9 +13,9 @@
     <script src="js/ion.rangeSlider.min.js"></script>
     <script src="animate.js"></script>
     <script>
-        $(function() {
-	        
-	      	function load(url) {
+        $(function () {
+
+            function load(url) {
                 var ret;
                 $.ajaxSetup({
                     async: false
@@ -38,29 +38,41 @@
                 initialDate: new Date("2015-11-30T06:00:00.000+01:00"),
                 minDate: new Date("2015-11-30T06:00:00.000+01:00"),
                 maxDate: new Date("2016-04-23T20:50:00.000+02:00"),
-                onChange: function(date) {
+                onChange: function (date) {
                     currentDate = date;
                 }
             });
 
             $("#timeline").ionRangeSlider({
                 grid: true,
-                from: -500,
-                to: 500,
-                step: 10,
+                from: 0,
+                to: 840,
+                step: 20,
                 hide_min_max: true,
                 hide_from_to: true,
-                values: values_for_date()
+                values: ['06:00', '06:20', '06:40',
+                    '07:00', '07:20', '07:40',
+                    '08:00', '08:20', '08:40',
+                    '09:00', '09:20', '09:40',
+                    '10:00', '10:20', '10:40',
+                    '11:00', '11:20', '11:40',
+                    '12:00', '12:20', '12:40',
+                    '13:00', '13:20', '13:40',
+                    '14:00', '14:20', '14:40',
+                    '15:00', '15:20', '15:40',
+                    '16:00', '16:20', '16:40',
+                    '17:00', '17:20', '17:40',
+                    '18:00', '18:20', '18:40',
+                    '19:00', '19:20', '19:40',
+                    '20:00', '20:20', '20:40'],
+                onChange: function (value) {
+                    currentTimeForDate = value;
+                }
             });
 
-            function values_for_date(){
-                var values = [];
-                ds.ticketing.start
-                return values;
-            }
 
-
-        });
+        })
+        ;
     </script>
     <style>
 
@@ -88,14 +100,14 @@
             float: left;
             margin-top: 22px !important;
         }
-        
+
         #calendar-container {
-	        padding: 0 0 18px 18px;
+            padding: 0 0 18px 18px;
         }
-        
+
         #panel {
         }
-     
+
     </style>
 </head>
 <body>
@@ -129,16 +141,16 @@
                     </button>
                 </div>
                 <div id="timeline-container">
-                    <input type="text" id="timeline" value="" />
+                    <input type="text" id="timeline" value=""/>
                 </div>
             </div>
         </div>
     </div>
     <div class="row" id="panel">
         <div class="four wide column">
-	        <div id="calendar-container">
-            	<div id="calendar" class="ui calendar"></div>
-        	</div>
+            <div id="calendar-container">
+                <div id="calendar" class="ui calendar"></div>
+            </div>
         </div>
         <div class="four wide column">
             stats
