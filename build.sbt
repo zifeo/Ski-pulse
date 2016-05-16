@@ -26,20 +26,7 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.0-M16-SNAP4" % "test"
 )
 
-scalacOptions in (Compile, doc) ++= Seq(
-  "-groups",
-  "-implicits",
-  "-no-link-warnings"
-)
-
-javacOptions in (Compile, doc) ++= Seq(
-  "-notimestamp",
-  "-linksource"
-)
-
 cancelable in Global := true
 fork := true
-autoAPIMappings := true
 parallelExecution in Test := false
 
-unmanagedClasspath in Compile += baseDirectory.value / "src" / "main" / "resources"
