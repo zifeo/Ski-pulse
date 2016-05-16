@@ -20,7 +20,7 @@ Futher developpment could lead to:
 
 ### Getting started
 
-Download the this repository and open `static/index.html` in your preferred browser. You can now explore the whole season using provided tools. Depending on your browser configuration, you might to use the webserver (requires [Scala](http://www.scala-lang.org) and [sbt](http://www.scala-lang.org)) by simpling launching `sbt run` in the folder and go to `localhost:8080`.
+Download the this repository and open `static/index.html` in your preferred browser. You can now explore the whole season using provided tools. Depending on your browser configuration, you might to use the webserver (requires [Scala](http://www.scala-lang.org) and [sbt](http://www.scala-lang.org)) by simpling launching `sbt "runMain skipulse.Main"` in the folder and go to `localhost:8080`.
 
 *Data mining, projections, analyses and visualizing had to be finished in less than 24 hours. Thus strange behaviors may appear, please open an issue in such cases.*
 
